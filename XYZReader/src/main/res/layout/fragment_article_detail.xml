@@ -24,8 +24,8 @@
                     android:id="@+id/photo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/detail_photo_height"
-                    android:scaleType="centerCrop"
-                    />
+                    android:transitionName="@string/shared_image_element"
+                    android:scaleType="centerCrop"/>
 
                 <View
                     android:layout_width="match_parent"
