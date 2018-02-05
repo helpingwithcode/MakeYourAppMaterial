@@ -10,6 +10,8 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +48,8 @@ public class ArticleListActivity extends AppCompatActivity implements
     private static final String TAG = ArticleListActivity.class.toString();
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
+    private CoordinatorLayout mCoordinatorLayout;
+    private Snackbar mSnackbar;
     private boolean mIsRefreshing = false;
 
     @SuppressLint("SimpleDateFormat")
@@ -62,6 +66,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_article_list);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.toolbar_container);
         getLoaderManager().initLoader(0, null, this);
         if (savedInstanceState == null)
             refresh();
@@ -99,6 +104,8 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        mSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.loading_articles), Snackbar.LENGTH_LONG);
+        mSnackbar.show();
         return ArticleLoader.newAllArticlesInstance(this);
     }
 
@@ -142,7 +149,6 @@ public class ArticleListActivity extends AppCompatActivity implements
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
-                    Timber.e(String.valueOf(ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
                     startActivity(intent);
                 }
             });

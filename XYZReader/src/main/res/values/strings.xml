@@ -9,5 +9,6 @@
 
     <string name="up">Up</string>
     <string name="pager_item">pagerItem</string>
+    <string name="loading_articles">Loading articles</string>
 
 </resources>

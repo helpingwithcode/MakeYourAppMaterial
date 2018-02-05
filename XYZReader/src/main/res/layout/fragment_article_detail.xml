@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:elevation="4dp"
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -123,6 +124,7 @@
         android:src="@drawable/ic_share"
         android:layout_margin="2dp"
         android:clickable="true"
+        android:elevation="6dp"
         app:layout_anchor="@id/ab_appbarlayout"
         app:layout_anchorGravity="bottom|end"
         android:contentDescription="@string/action_share"/>
