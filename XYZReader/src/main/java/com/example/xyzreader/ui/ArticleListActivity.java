@@ -79,7 +79,10 @@ public class ArticleListActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        registerReceiver(mRefreshingReceiver, new IntentFilter(UpdaterService.BROADCAST_ACTION_STATE_CHANGE));
+        IntentFilter mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(UpdaterService.BROADCAST_ACTION_STATE_CHANGE);
+        mIntentFilter.addAction(UpdaterService.BROADCAST_ERROR);
+        registerReceiver(mRefreshingReceiver, mIntentFilter);
     }
 
     @Override
@@ -95,8 +98,15 @@ public class ArticleListActivity extends AppCompatActivity implements
                 mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
                 updateRefreshingUI();
             }
+            if (UpdaterService.BROADCAST_ERROR.equals(intent.getAction()))
+                showSnackWithError();
         }
     };
+
+    private void showSnackWithError() {
+        mSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.default_error_message), Snackbar.LENGTH_LONG);
+        mSnackbar.show();
+    }
 
     private void updateRefreshingUI() {
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
@@ -104,8 +114,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        mSnackbar = Snackbar.make(mCoordinatorLayout, getString(R.string.loading_articles), Snackbar.LENGTH_LONG);
-        mSnackbar.show();
         return ArticleLoader.newAllArticlesInstance(this);
     }
 

@@ -10,5 +10,6 @@
     <string name="up">Up</string>
     <string name="pager_item">pagerItem</string>
     <string name="loading_articles">Loading articles</string>
+    <string name="default_error_message">Please check your internet connection.</string>
 
 </resources>
