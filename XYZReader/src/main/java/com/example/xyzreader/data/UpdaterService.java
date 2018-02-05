@@ -1,5 +1,6 @@
 package com.example.xyzreader.data;
 
+import android.annotation.SuppressLint;
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
 import android.content.ContentValues;
@@ -32,6 +33,7 @@ public class UpdaterService extends IntentService {
         super(TAG);
     }
 
+    @SuppressLint("LogNotTimber")
     @Override
     protected void onHandleIntent(Intent intent) {
         Time time = new Time();

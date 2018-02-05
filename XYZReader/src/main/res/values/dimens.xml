@@ -9,4 +9,12 @@
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="lift_translation_z">6dp</dimen>
 
+    <dimen name="half_margin">4dp</dimen>
+    <dimen name="x1_margin">8dp</dimen>
+    <dimen name="x2_margin">16dp</dimen>
+    <dimen name="x4_margin">32dp</dimen>
+    <dimen name="x6_margin">48dp</dimen>
+    <dimen name="x8_margin">64dp</dimen>
+    <dimen name="x5_text_padding">20dp</dimen>
+
 </resources>

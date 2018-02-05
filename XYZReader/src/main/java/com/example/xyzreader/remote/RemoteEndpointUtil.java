@@ -1,5 +1,6 @@
 package com.example.xyzreader.remote;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -19,6 +20,7 @@ public class RemoteEndpointUtil {
     private RemoteEndpointUtil() {
     }
 
+    @SuppressLint("LogNotTimber")
     public static JSONArray fetchJsonArray() {
         String itemsJson = null;
         try {
